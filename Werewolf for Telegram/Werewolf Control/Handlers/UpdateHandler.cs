@@ -228,7 +228,7 @@ namespace Werewolf_Control.Handler
                     return;
                 }
                 if (update.Message == null) return;
-                Program.Analytics.TrackAsync("message", update.Message, update.Message.From.Id.ToString());
+                //Program.Analytics.TrackAsync("message", update.Message, update.Message.From.Id.ToString());
                 //ignore previous messages
                 if ((update.Message?.Date ?? DateTime.MinValue) < Bot.StartTime.AddSeconds(-10))
                     return; //toss it
@@ -321,9 +321,9 @@ namespace Werewolf_Control.Handler
                                 var args = GetParameters(update.Message.Text);
                                 args[0] = args[0].ToLower().Replace("@" + Bot.Me.Username.ToLower(), "");
                                 //command is args[0]
-                                Program.Analytics.TrackAsync("/" + args[0],
-                                    new {groupid = update.Message.Chat.Id, user = update.Message.From},
-                                    update.Message.From.Id.ToString());
+                                //Program.Analytics.TrackAsync("/" + args[0],
+                                    //new {groupid = update.Message.Chat.Id, user = update.Message.From},
+                                    //update.Message.From.Id.ToString());
                                 if (args[0].StartsWith("about"))
                                 {
                                     var reply = Commands.GetAbout(update, args);
@@ -475,7 +475,7 @@ namespace Werewolf_Control.Handler
                                 {
                                     if (m.LeftChatMember.Id == Bot.Me.Id)
                                     {
-                                        Program.Analytics.TrackAsync("botremoved", m, m.From?.Id.ToString() ?? "0");
+                                        //Program.Analytics.TrackAsync("botremoved", m, m.From?.Id.ToString() ?? "0");
                                         //removed from group
                                         var grps = DB.Groups.Where(x => x.GroupId == id);
                                         if (!grps.Any())
@@ -498,7 +498,7 @@ namespace Werewolf_Control.Handler
                                 }
                                 if (m.NewChatMember?.Id == Bot.Me.Id)
                                 {
-                                    Program.Analytics.TrackAsync("botadded", m, m.From?.Id.ToString() ?? "0");
+                                    //Program.Analytics.TrackAsync("botadded", m, m.From?.Id.ToString() ?? "0");
                                     //added to a group
                                     grp = DB.Groups.FirstOrDefault(x => x.GroupId == id);
                                     if (grp == null)
@@ -514,9 +514,9 @@ namespace Werewolf_Control.Handler
                                     DB.SaveChanges();
 
                                     var msg =
-                                        $"You've just added Werewolf Moderator!  Use /config (group admins) to configure group settings.   If you need assistance, join the [support channel](https://telegram.me/werewolfsupport)";
+                                        $"You've just added Thestor Moderator!  Use /config (group admins) to configure group settings.   If you need assistance, join the [dev group](t.me/thestorbot_development)";
                                     msg += Environment.NewLine +
-                                           "For updates on what is happening, join the dev channel @werewolfdev" +
+                                           "For updates on what is happening, join the announcements channel @thestorbot_moderator" +
                                            Environment.NewLine +
                                            "Full information is available on the [website](http://www.tgwerewolf.com)";
                                     Send(msg, id, parseMode: ParseMode.Markdown);
@@ -642,14 +642,14 @@ namespace Werewolf_Control.Handler
                 p.DonationLevel += amt;
                 var level = p.DonationLevel ?? 0;
                 var badge = "";
-                if (level >= 100)
-                    badge += " 🥇";
+                if (level >= 100) ;
+                // badge += " 🥇";
                 else if (level >= 50)
                     badge += " 🥈";
                 else if (level >= 10)
                     badge += " 🥉";
                 if (p.Founder ?? false)
-                    badge += "💎";
+                    badge += "💜";
 
                 Bot.Send($"Successfully received ${amt} from you! YAY!\nTotal Donated: ${level}\nCurrent Badge (ingame): {badge}", message.From.Id);
                 //check to see how many people have purchased gif packs
@@ -784,7 +784,7 @@ namespace Werewolf_Control.Handler
         internal static void HandleCallback(CallbackQuery query)
         {
             Bot.MessagesProcessed++;
-            Program.Analytics.TrackAsync("callback", query, query.From.Id.ToString());
+            //Program.Analytics.TrackAsync("callback", query, query.From.Id.ToString());
             //Bot.CommandsReceived++;
             using (var DB = new WWContext())
             {
@@ -797,7 +797,7 @@ namespace Werewolf_Control.Handler
                         return;
                     }
                     string[] args = query.Data.Split('|');
-                    Program.Analytics.TrackAsync($"cb:{args[0]}", new { args = args }, query.From.Id.ToString());
+                    //Program.Analytics.TrackAsync($"cb:{args[0]}", new { args = args }, query.From.Id.ToString());
 
                     if (args[0] == "donatetg")
                     {
@@ -848,7 +848,7 @@ namespace Werewolf_Control.Handler
 
                                     pack = JsonConvert.DeserializeObject<CustomGifData>(json);
                                     var id = query.From.Id;
-                                    Send($"Sending gifs for {pid}", id);
+                                    Send($"Sending gifs fo/starr {pid}", id);
                                     Thread.Sleep(1000);
                                     Bot.Api.SendDocumentAsync(id, pack.CultWins, "Cult Wins");
                                     Bot.Api.SendDocumentAsync(id, pack.LoversWin, "Lovers Win");
@@ -971,7 +971,7 @@ namespace Werewolf_Control.Handler
                         //dev only commands
                         if (!UpdateHelper.Devs.Contains(query.From.Id))
                         {
-                            Bot.ReplyToCallback(query, "You aren't Para! Go Away!!", false, true);
+                            Bot.ReplyToCallback(query, "You aren't @rainzy! Go Away!!", false, true);
                             return;
                         }
                         Bot.ReplyToCallback(query, "Processing...", false);
@@ -1925,7 +1925,7 @@ namespace Werewolf_Control.Handler
                 var com = q.Query;
                 choices = commands.Where(command => command.Command.StartsWith(com) || Commands.ComputeLevenshtein(com, command.Command) < 3).ToList();
             }
-            Program.Analytics.TrackAsync("inline", q, q.From.Id.ToString());
+            //Program.Analytics.TrackAsync("inline", q, q.From.Id.ToString());
             Bot.Api.AnswerInlineQueryAsync(q.Id, choices.Select(c => new InlineQueryResultArticle()
             {
                 Description = c.Description,
