@@ -16,6 +16,7 @@ namespace Werewolf_Control.Helpers
             133748469,  //reny
             125311351,  //Daniel
             295152997,  //Ludwig
+            173887991,  //rainzy
         };
         internal static bool IsGroupAdmin(Update update)
         {
