@@ -1183,7 +1183,7 @@
     <value>the Bomber 🐶</value>
   </string>
   <string key="PlayerBittenWolves">
-    <value>As the wolves attack {0}, {1} stops everyone, being the Mastermind. {1} tells the group that {0} should join the group instead of dying, so the Mastermind hypnotized them. It would take one night for them to be a terrorist.</value>
+    <value>As the terrorists attack {0}, {1} stops everyone, being the Mastermind. {1} tells the group that {0} should join the group instead of dying, so the Mastermind hypnotized him. It would take one night for him to be a terrorist.</value>
   </string>
   <string key="PlayerBitten">
     <value>You were attacked by the terrorists, but the Mastermind hypnotized you. Instead of being killed, you have been hypnotized and will become a terrorist tomorrow night!</value>
