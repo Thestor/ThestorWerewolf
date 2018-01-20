@@ -1120,7 +1120,7 @@
   
   <!-- Update 4.0-->
   <string key="RoleInfoMayor">
-    <value>You are the Major. Your vote during the dusk will count twice, once you have revealed yourself. You are on the citizens team.</value>
+    <value>You are the Major. Your vote during the dusk will count twice, once you have verified your documents. You are on the citizens team.</value>
   </string>
   <string key="RoleInfoPrince">
     <value>You are secretly the General, escaping from your boring, pampered life by completion missions. If they try to arrest you, they realize his error, and no one will be arrested.</value>
@@ -1147,7 +1147,7 @@
     <value>You try to check {0}, but can't quite make out what they are.  They are not a terrorist or the Prime Minister, however.</value>
   </string>
   <string key="MayorReveal">
-    <value>{0} steps forward and declares that they are the Major, stealing attention from all citizens. From now on, {0}'s votes at the dusk will count twice.</value>
+    <value>{0} steps forward and declares that they are the Major, stealing attention from all citizens. Proven by verified documents. From now on, {0}'s votes at the dusk will count twice.</value>
   </string>
   <string key="AskMayor">
     <value>Click "Reveal" whenever you are ready to reveal yourself as the Major.</value>
