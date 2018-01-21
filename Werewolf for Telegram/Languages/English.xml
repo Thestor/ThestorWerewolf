@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <strings>
   <language name="English" base="English" variant="Normal" owner="Para949" code="en"/>
   <string key="NotInGame" deprecated="true">
@@ -13,6 +13,12 @@
     <!-- 0 - Player name -->
     <value>{0} has started a chaos game! Join to get in on the fun... and probably die :P</value>
     <value>A new chaos game has been started by {0}! Join to get eaten!</value>
+  </string>
+	<!-- Foolish game update -->
+    <!-- 0 - Player name -->
+	<string key="PlayerStartedFoolishGame" isgif="true">
+    <value>{0} has started a foolish game! Join to get in on the fun... and probably die :P</value>
+    <value>A new foolish game has been started by {0}! Join to get eaten!</value>
   </string>
   <string key="NoJoinGameRunning" deprecated="true">
     <value>You can't join now! The game is already running.</value>
