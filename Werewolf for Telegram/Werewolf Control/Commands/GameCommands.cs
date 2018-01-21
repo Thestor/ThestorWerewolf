@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +31,19 @@ namespace Werewolf_Control
         {
             if (!Program.MaintMode)
                 StartGame(true, update);
+            else
+            {
+                Send("Sorry, we are about to start maintenance.  Please check @thestorbot_moderator for more information.",
+                    update.Message.Chat.Id);
+            }
+        }
+		
+		//Thestor -- I added this method.
+		[Command(Trigger = "startfoolish", Blockable = true, InGroupOnly = true)]
+        public static void StartFoolish(Update update, string[] args)
+        {
+            if (!Program.MaintMode)
+                StartFoolish(false, update);
             else
             {
                 Send("Sorry, we are about to start maintenance.  Please check @thestorbot_moderator for more information.",
