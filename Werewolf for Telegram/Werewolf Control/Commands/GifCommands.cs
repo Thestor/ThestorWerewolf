@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -297,6 +297,9 @@ namespace Werewolf_Control
                         break;
                     case "Chaos":
                         data.StartChaosGame = id;
+                        break;
+                    case "Foolish":
+                        data.StartFoolishGame = id;
                         break;
                 }
                 data.Approved = null;
