@@ -12,11 +12,9 @@ namespace Werewolf_Control.Helpers
     {
         internal static int[] Devs =
         {
-            129046388,  //Para
-            133748469,  //reny
-            125311351,  //Daniel
-            295152997,  //Ludwig
+            458347115,  //Thestor Bot Manager 👮
             173887991,  //rainzy
+            86147536,   //❄️ 🐺 SKÖLL 🐺 ❄️
         };
         internal static bool IsGroupAdmin(Update update)
         {
