@@ -1369,8 +1369,6 @@ if (mode == "Chaos" || "Normal")
                     rolesToAssign.Shuffle();
                     rolesToAssign = rolesToAssign.Take(count).ToList();
 
-
-
                     //let's fix some roles that should or shouldn't be there...
 
                     //sorcerer or traitor, without wolves, are pointless. change one of them to wolf
@@ -1381,14 +1379,6 @@ if (mode == "Chaos" || "Normal")
                         rolesToAssign[towolf] = WolfRoles[Program.R.Next(3)]; //choose randomly from WolfRoles
                     }
 
-                    //appseer without seer -> seer
-                    if (rolesToAssign.Contains(IRole.ApprenticeSeer) && !rolesToAssign.Contains(IRole.Seer))
-                    {
-                        //substitute with seer
-                        var apps = rolesToAssign.IndexOf(IRole.ApprenticeSeer);
-                        rolesToAssign[apps] = IRole.Seer;
-                    }
-
                     //cult without CH -> add CH
                     if (rolesToAssign.Contains(IRole.Cultist) && !rolesToAssign.Contains(IRole.CultistHunter))
                     {
@@ -1397,6 +1387,13 @@ if (mode == "Chaos" || "Normal")
                         rolesToAssign[vg] = IRole.CultistHunter;
                     }
 
+                    //appseer without seer -> seer
+                    if (rolesToAssign.Contains(IRole.ApprenticeSeer) && !rolesToAssign.Contains(IRole.Seer))
+                    {
+                        //substitute with seer
+                        var apps = rolesToAssign.IndexOf(IRole.ApprenticeSeer);
+                        rolesToAssign[apps] = IRole.Seer;
+                    }
 
                     //make sure that we have at least two teams
                     if (
