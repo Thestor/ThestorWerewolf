@@ -18,7 +18,7 @@ namespace Werewolf_Control
         public static void StartGame(Update update, string[] args)
         {
             if (!Program.MaintMode)
-                StartGame(false, update);
+                StartGame(false, false, update);
             else
             {
                 Send("Sorry, we are about to start maintenance.  Please check @thestorbot_moderator for more information.",
@@ -30,7 +30,7 @@ namespace Werewolf_Control
         public static void StartChaos(Update update, string[] args)
         {
             if (!Program.MaintMode)
-                StartGame(true, update);
+                StartGame(true, false, update);
             else
             {
                 Send("Sorry, we are about to start maintenance.  Please check @thestorbot_moderator for more information.",
@@ -43,7 +43,7 @@ namespace Werewolf_Control
         public static void StartFoolish(Update update, string[] args)
         {
             if (!Program.MaintMode)
-                StartFoolish(false, update);
+                StartFoolish(false, true, update);
             else
             {
                 Send("Sorry, we are about to start maintenance.  Please check @thestorbot_moderator for more information.",
