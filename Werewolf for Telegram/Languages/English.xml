@@ -1002,6 +1002,9 @@
   <string key="ChaosOnly">
     <value>Chaos Only</value>
   </string>
+  <string key="FoolishOnly">
+    <value>Foolish Only</value>
+  </string>
   <string key="PlayerChoice">
     <value>Player Choice</value>
   </string>
