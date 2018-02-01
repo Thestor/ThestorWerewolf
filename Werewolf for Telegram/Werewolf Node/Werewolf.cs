@@ -1256,8 +1256,7 @@ namespace Werewolf_Node
         }
 #endregion
 
-#if 
-	mode == "Chaos" || "Normal")
+#if mode == ("Chaos" || "Normal")
 		
 #region Roles
 	
@@ -4742,10 +4741,8 @@ namespace Werewolf_Node
         }
 
 #endregion
-}
-
-if (mode == "Foolish")
-{
+	
+#elseif (mode == "Foolish")
 	#region Roles
 	
         string GetDescription(IRole en)
@@ -8282,6 +8279,5 @@ if (mode == "Foolish")
         }
 
 #endregion
-}
     }
 }
