@@ -36,7 +36,7 @@ namespace Werewolf_Control
             return db.Players.FirstOrDefault(x => x.TelegramId == id);
         }
 
-        private static void StartGame(bool chaos, Update update)
+        private static void StartGame(bool chaos, bool foolish, Update update)
         {
             if (update.Message.Chat.Type == ChatType.Private)
             {
@@ -131,7 +131,7 @@ namespace Werewolf_Control
             node = Bot.GetBestAvailableNode();
             if (node != null)
             {
-                node.StartGame(update, chaos);
+                node.StartGame(update, chaos, foolish);
                 //Program.Analytics.TrackAsync("creategame", new { chaos = chaos, groupid = update.Message.Chat.Id }, update.Message.From.Id.ToString());
                 //notify waiting players
                 using (var db = new WWContext())
