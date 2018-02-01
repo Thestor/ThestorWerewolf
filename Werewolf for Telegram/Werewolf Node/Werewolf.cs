@@ -141,7 +141,7 @@ namespace Werewolf_Node
                                 StartGame.Clear();
                                 StartGame.Add(gifset.StartGame);
                             }
-							if (gifset.StartFoolish Game != null)
+							if (gifset.StartFoolishGame != null)
 							{
 								StartFoolishGame.Clear();
 								StartFoolishGame.Add(gifset.StartGame);
@@ -211,7 +211,7 @@ namespace Werewolf_Node
 
 #else
 				//Thestor -- I update the getrandomimage parameter
-                _joinMsgId = Program.Bot.SendDocumentAsync(chatid, new FileToSend(GetRandomImage(Chaos ? StartChaosGame : (Foolish ? StartFoolishGame : StartGame)), FirstMessage, replyMarkup: _joinButton).Result.MessageId;
+                _joinMsgId = Program.Bot.SendDocumentAsync(chatid, new FileToSend(GetRandomImage(Chaos ? StartChaosGame : (Foolish ? StartFoolishGame : StartGame))), FirstMessage, replyMarkup: _joinButton).Result.MessageId;
                
 #endif
 
