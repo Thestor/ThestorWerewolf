@@ -8277,6 +8277,7 @@ namespace Werewolf_Node
                 }
             }
         }
-#endregion
+	#endregion
+#endif
     }
 }
