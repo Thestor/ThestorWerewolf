@@ -866,6 +866,7 @@ namespace Werewolf_Control.Handler
                                     Bot.Api.SendDocumentAsync(id, pack.WolfWin, "Single Wolf Wins");
                                     Thread.Sleep(250);
                                     Bot.Api.SendDocumentAsync(id, pack.WolvesWin, "Wolf Pack Wins");
+                                    Bot.Api.SendDocumentAsync(id, pack.StartFoolishGame, "Foolish Start");
                                     var msg = $"Approval Status: ";
                                     switch (pack.Approved)
                                     {
@@ -1491,6 +1492,7 @@ namespace Werewolf_Control.Handler
                         case "mode":
                             buttons.Add(new InlineKeyboardCallbackButton(GetLocaleString("NormalOnly", language), $"setmode|{groupid}|Normal"));
                             buttons.Add(new InlineKeyboardCallbackButton(GetLocaleString("ChaosOnly", language), $"setmode|{groupid}|Chaos"));
+                            buttons.Add(new InlineKeyboardCallbackButton(GetLocaleString("FoolishOnly", language), $"setmode|{groupid}|Foolish"));
                             buttons.Add(new InlineKeyboardCallbackButton(GetLocaleString("PlayerChoice", language), $"setmode|{groupid}|Player"));
                             buttons.Add(new InlineKeyboardCallbackButton(Cancel, $"setmode|{groupid}|cancel"));
                             menu = new InlineKeyboardMarkup(buttons.Select(x => new[] { x }).ToArray());
