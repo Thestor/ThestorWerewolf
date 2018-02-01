@@ -34,7 +34,8 @@ namespace Werewolf_Node
             KillTimer,
             IsInitializing,
             MessageQueueing = true,
-            Chaos, WolfCubKilled,
+            Chaos, Foolish,
+	    WolfCubKilled,
             NoOneCastLynch;
         public Guid Guid = Guid.NewGuid();
         private readonly InlineKeyboardMarkup _requestPMButton;
@@ -3855,7 +3856,7 @@ namespace Werewolf_Node
                 //Program.Bot.SendTextMessage(ChatId, "[Enjoy playing? Support the developers and get some swag!](https://teespring.com/stores/werewolf-for-telegram)", parseMode: ParseMode.Markdown, disableWebPagePreview: true);
                 UpdateAchievements();
                 UpdateGroupRanking();
-                Program.Analytics.TrackAsync("gameend", new { winner = team.ToString(), groupid = ChatId, mode = Chaos ? "Chaos" : "Normal", size = Players.Count() }, "0");
+                Program.Analytics.TrackAsync("gameend", new { winner = team.ToString(), groupid = ChatId, mode = Chaos ? "Chaos" : (Foolish ? "Foolish" : "Normal"), size = Players.Count() }, "0");
                 //if (ChatId == -1001094614730)
                 //{
                 //    foreach (var p in Players.Where(x => x.IsDead))
@@ -7395,7 +7396,7 @@ if (mode == "Foolish")
                 //Program.Bot.SendTextMessage(ChatId, "[Enjoy playing? Support the developers and get some swag!](https://teespring.com/stores/werewolf-for-telegram)", parseMode: ParseMode.Markdown, disableWebPagePreview: true);
                 UpdateAchievements();
                 UpdateGroupRanking();
-                Program.Analytics.TrackAsync("gameend", new { winner = team.ToString(), groupid = ChatId, mode = Chaos ? "Chaos" : "Normal", size = Players.Count() }, "0");
+                Program.Analytics.TrackAsync("gameend", new { winner = team.ToString(), groupid = ChatId, mode = Chaos ? "Chaos" : (Foolish ? "Foolish" : "Normal"), size = Players.Count() }, "0");
                 //if (ChatId == -1001094614730)
                 //{
                 //    foreach (var p in Players.Where(x => x.IsDead))
