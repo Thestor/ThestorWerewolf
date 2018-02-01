@@ -81,6 +81,7 @@ namespace Werewolf_Node
         /// <param name="u">User that started the game</param>
         /// <param name="chatGroup">Name of the group starting the game</param>
         /// <param name="chaos">Chaos mode yes or no</param>
+	/// <param name="foolish">Foolish mode yes or no</param>
         public Werewolf(long chatid, User u, string chatGroup, bool chaos = false)
         {
             try
@@ -1254,8 +1255,9 @@ namespace Werewolf_Node
         }
 #endregion
 
-if (mode == "Chaos" || "Normal")
-{		
+#if 
+	mode == "Chaos" || "Normal")
+		
 #region Roles
 	
         string GetDescription(IRole en)
