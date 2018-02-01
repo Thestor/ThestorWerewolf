@@ -4851,7 +4851,7 @@ namespace Werewolf_Node
                     //let's fix some roles that should or shouldn't be there... ALL UNWANTED ROLES SHOULD BE CHANGED INTO FOOLS!
 					
 					//Thestor -- if we have no seer, then...
-					if (!rolesToAssign.Contains(IRole.Seer)
+					if (!rolesToAssign.Contains(IRole.Seer))
 					{
 						var toseer = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[toseer] = IRole.Seer;
@@ -4860,7 +4860,7 @@ namespace Werewolf_Node
 					//Thestor -- if we have no appseer, then...
 					if (playerCount >=10)
 					{
-						if (!rolesToAssign.Contains(IRole.ApprenticeSeer)
+						if (!rolesToAssign.Contains(IRole.ApprenticeSeer))
 						{	
 							var toappseer = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.ApprenticeSeer;
@@ -4871,7 +4871,7 @@ namespace Werewolf_Node
 					
 					if (playerCount >= 5 && playerCount <=9) 
 					{
-						if (!rolesToAssign.Contains(IRole.Wolf)
+						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
@@ -4880,7 +4880,7 @@ namespace Werewolf_Node
 					
 					if (playerCount >= 10 && playerCount <= 14)
 					{
-						if (!rolesToAssign.Contains(IRole.Wolf)
+						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
@@ -4892,7 +4892,7 @@ namespace Werewolf_Node
 
 					if (playerCount >= 15 && playerCount <= 19)
 					{
-						if (!rolesToAssign.Contains(IRole.Wolf)
+						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
@@ -4907,7 +4907,7 @@ namespace Werewolf_Node
 					
 					if (playerCount >= 20 && playerCount <= 24)
 					{
-						if (!rolesToAssign.Contains(IRole.Wolf)
+						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
@@ -4925,7 +4925,7 @@ namespace Werewolf_Node
 					
 					if (playerCount >= 25 && playerCount <= 35)
 					{
-						if (!rolesToAssign.Contains(IRole.Wolf)
+						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
@@ -8277,7 +8277,6 @@ namespace Werewolf_Node
                 }
             }
         }
-
 #endregion
     }
 }
