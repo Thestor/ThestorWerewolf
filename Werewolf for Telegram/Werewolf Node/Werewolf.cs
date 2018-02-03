@@ -4761,6 +4761,7 @@ namespace Werewolf_Node
                 {
                     case IRole.Wolf:
                         rolesToAssign.Add(role);
+			break;
                     case IRole.CultistHunter:
                         rolesToAssign.Add(role);
 			break;
