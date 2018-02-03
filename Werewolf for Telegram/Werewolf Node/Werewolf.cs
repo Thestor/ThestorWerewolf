@@ -4839,12 +4839,10 @@ namespace Werewolf_Node
                         throw new IndexOutOfRangeException("Unable to create a balanced game.  Please try again.\nPlayer count: " + count);
                     }
 
-
+			// i removed something here
                     //determine which roles should be assigned
-                    rolesToAssign = GetRoleList(count, DbGroup.HasFlag(GroupConfig.AllowCult), DbGroup.HasFlag(GroupConfig.AllowTanner),
-                        DbGroup.HasFlag(GroupConfig.AllowFool));
-                    rolesToAssign.Shuffle();
-                    rolesToAssign = rolesToAssign.Take(count).ToList();
+			
+			rolesToAssign.Shuffle();
 
 
 
