@@ -18,6 +18,8 @@
         Detect,
         Convert,
         Fly,
+        Assassin,
+        Bomb,
         RoleModel,
         Hunt,
         HunterKill,
