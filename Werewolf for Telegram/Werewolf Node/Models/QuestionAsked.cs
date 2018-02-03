@@ -17,6 +17,7 @@
         Guard,
         Detect,
         Convert,
+        Fly, //changes
         RoleModel,
         Hunt,
         HunterKill,
