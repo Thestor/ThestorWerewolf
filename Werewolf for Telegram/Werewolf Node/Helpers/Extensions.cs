@@ -115,12 +115,14 @@ namespace Werewolf_Node.Helpers
                     return 0;
                 case IRole.GuardianAngel:
                     return 7;
+                case IRole.Agent:
+                    return 7;
                 case IRole.Detective:
                     return 6;
                 case IRole.Wolf:
                     return 10;
                 case IRole.Cursed:
-                    return 1 - allRoles.Count(x => WolfRoles.Contains(x)) / 2; //vg, or worse
+                    return 6 - allRoles.Count(x => x == IRole.Wolf);
                 case IRole.Gunner:
                     return 6;
                 case IRole.Tanner:
@@ -128,33 +130,43 @@ namespace Werewolf_Node.Helpers
                 case IRole.Fool:
                     return 3;
                 case IRole.WildChild:
-                    return 1;
+                    return 2;
                 case IRole.Beholder:
                     return 2 + (allRoles.Any(x => x == IRole.Seer) ? 4 : 0); //only good if seer is present!
                 case IRole.ApprenticeSeer:
                     return 6;
                 case IRole.Cultist:
-                    return 10 + allRoles.Count(x => !nonConvertibleRoles.Contains(x));
+                    return 12 + allRoles.Count(x => x == IRole.Villager);
                 case IRole.CultistHunter:
-                    return allRoles.Count(x => x == IRole.Cultist) == 0 ? 1 : 7;
+                    return 7;
                 case IRole.Mason:
-                    return allRoles.Count(x => x == IRole.Mason) <= 1 ? 1 : allRoles.Count(x => x == IRole.Mason) + 3 ; //strength in numbers
+                    return 3 + (allRoles.Count(x => x == IRole.Mason)); //strength in numbers
                 case IRole.Doppelgänger:
-                    return 2;
+                    return 4;
                 case IRole.Cupid:
                     return 2;
                 case IRole.Hunter:
                     return 6;
                 case IRole.SerialKiller:
                     return 15;
+                case IRole.Assassin:
+                    return 15;
+                case IRole.Terrorist:
+                    return 7;
+                case IRole.DarkOwl:
+                    return 3;
                 case IRole.Sorcerer:
                     return 2;
                 case IRole.AlphaWolf:
                     return 12;
                 case IRole.WolfCub:
-                    return 12;
+                    return 11;
                 case IRole.Blacksmith:
                     return 5;
+                case IRole.Preacher:
+                    return 4;
+                case IRole.Faithful:
+                    return 3;
                 case IRole.ClumsyGuy:
                     return -1;
                 case IRole.Mayor:
