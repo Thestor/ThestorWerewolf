@@ -67,7 +67,7 @@ namespace Werewolf_Node
             VillagersWin,
             NoWinner,
             StartGame,
-			StartFoolishGame,
+		StartFoolishGame,
             StartChaosGame,
             TannerWin,
             CultWins,
@@ -94,7 +94,7 @@ namespace Werewolf_Node
                 VillagersWin = Settings.VillagersWin.ToList();
                 NoWinner = Settings.NoWinner.ToList();
                 StartGame = Settings.StartGame.ToList();
-				StartFoolishGame = Settings.StartFoolishGame.ToList();
+		StartFoolishGame = Settings.StartFoolishGame.ToList();
                 StartChaosGame = Settings.StartChaosGame.ToList();
                 TannerWin = Settings.TannerWin.ToList();
                 CultWins = Settings.CultWins.ToList();
@@ -183,9 +183,9 @@ namespace Werewolf_Node
                         SecretLynch = DbGroup.HasFlag(GroupConfig.EnableSecretLynch);
                         ShowRolesOnDeath = DbGroup.HasFlag(GroupConfig.ShowRolesDeath);
 						
-						//Thestor -- decide if foolish or not
-						Foolish = DbGroup.Mode == "Player" ? foolish : DbGroup.Mode == "Foolish";
-						ShowRolesEnd = DbGroup.ShowRolesEnd;
+			//Thestor -- decide if foolish or not
+			Foolish = DbGroup.Mode == "Player" ? foolish : DbGroup.Mode == "Foolish";
+			ShowRolesEnd = DbGroup.ShowRolesEnd;
                         AllowTanner = DbGroup.HasFlag(GroupConfig.AllowTanner);
                         AllowFool = DbGroup.HasFlag(GroupConfig.AllowFool);
                         AllowCult = DbGroup.HasFlag(GroupConfig.AllowCult);
@@ -1354,7 +1354,7 @@ namespace Werewolf_Node
 
                 var balanced = false;
                 var attempts = 0;
-                var nonVgRoles = new[] { IRole.Cultist, IRole.SerialKiller, IRole.Tanner, IRole.Wolf, IRole.AlphaWolf, IRole.Sorcerer, IRole.WolfCub };
+                var nonVgRoles = new[] { IRole.Cultist, IRole.SerialKiller, IRole.Tanner, IRole.Terrorist, IRole.DarkOwl, IRole.Wolf, IRole.AlphaWolf, IRole.Sorcerer, IRole.WolfCub };
 
                 do
                 {
@@ -1373,11 +1373,11 @@ namespace Werewolf_Node
 
                     //let's fix some roles that should or shouldn't be there...
 
-                    //sorcerer or traitor, without wolves, are pointless. change one of them to wolf
-                    if ((rolesToAssign.Contains(IRole.Sorcerer) || rolesToAssign.Contains(IRole.Traitor)) &&
+                    //sorcerer or traitor or terrorist or dark owl, without wolves, are pointless. change one of them to wolf
+                    if ((rolesToAssign.Contains(IRole.Sorcerer) || rolesToAssign.Contains(IRole.Traitor) || rolesToAssign.Contains(IRole.Terrorist) || rolesToAssign.Contains(IRole.DarkOwl)) &&
                         !rolesToAssign.Any(x => WolfRoles.Contains(x)))
                     {
-                        var towolf = rolesToAssign.FindIndex(x => x == IRole.Sorcerer || x == IRole.Traitor); //if there are both, the random order of rolesToAssign will choose for us which one to substitute
+                        var towolf = rolesToAssign.FindIndex(x => x == IRole.Sorcerer || x == IRole.Traitor || x == IRole.Terrorist || x == IRole.DarkOwl); //if there are both, the random order of rolesToAssign will choose for us which one to substitute
                         rolesToAssign[towolf] = WolfRoles[Program.R.Next(3)]; //choose randomly from WolfRoles
                     }
 
@@ -1400,7 +1400,7 @@ namespace Werewolf_Node
                     //make sure that we have at least two teams
                     if (
                         rolesToAssign.Any(x => !nonVgRoles.Contains(x)) //make sure we have VGs
-                        && rolesToAssign.Any(x => nonVgRoles.Contains(x) && x != IRole.Sorcerer && x != IRole.Tanner) //make sure we have at least one enemy
+                        && rolesToAssign.Any(x => nonVgRoles.Contains(x) && x != IRole.Sorcerer && x != IRole.Tanner && x != IRole.Terrorist && x != IRole.DarkOwl) //make sure we have at least one enemy
                     )
                         balanced = true;
                     //else, redo role assignment. better to rely on randomness, than trying to fix it
@@ -1541,6 +1541,26 @@ namespace Werewolf_Node
                         p.HasDayAction = false;
                         p.Team = ITeam.SerialKiller;
                         break;
+		    case IRole.Agent:
+			p.HasNightAction = true;
+			p.HasDayAction = false;
+			p.Team = ITeam.Village;
+			break;
+		    case IRole.Assassin:
+			p.HasNightAction = true;
+			p.HasDayAction = false;
+			p.Team = ITeam.Village;
+			break;
+		    case IRole.Terrorist:
+			p.HasNightAction = true;
+			p.HasDayAction = false;
+			p.Team = ITeam.Wolf;
+			break;
+		    case IRole.DarkOwl:
+			p.HasNightAction = true;
+			p.HasDayAction = false;
+			p.Team = ITeam.Wolf;
+			break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -1871,6 +1891,26 @@ namespace Werewolf_Node
                         case IRole.Cursed:
                         case IRole.Drunk:
                         case IRole.Prince:
+			case IRole.Agent;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Village;
+                            break;
+			case IRole.Terrorist;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Wolf;
+                            break;
+			case IRole.DarkOwl;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Wolf;
+                            break;
+			case IRole.Assassin;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Village;
+                            break;
                         case IRole.ClumsyGuy:
                             p.HasDayAction = false;
                             p.HasNightAction = false;
@@ -2361,7 +2401,7 @@ namespace Werewolf_Node
                     Send(GetLocaleString("DetectiveSnoop", check.GetName(), GetDescription(check.PlayerRole)), detect.Id);
 
                     //if snooped non-bad-roles:
-                    if (!new[] { IRole.Wolf, IRole.AlphaWolf, IRole.WolfCub, IRole.Cultist, IRole.SerialKiller }.Contains(check.PlayerRole))
+                    if (!new[] { IRole.Wolf, IRole.AlphaWolf, IRole.WolfCub, IRole.Cultist, IRole.SerialKiller, IRole.Sorcerer, IRole.DarkOwl, IRole.Terrorist, IRole.Tanner }.Contains(check.PlayerRole))
                         detect.CorrectSnooped.Clear();     //clear correct snoop list
                     else
                     {
@@ -2391,7 +2431,7 @@ namespace Werewolf_Node
                     check.IsDead = true;
                     if (check.PlayerRole == IRole.WolfCub)
                         WolfCubKilled = true;
-                    if (!new[] { IRole.Wolf, IRole.AlphaWolf, IRole.WolfCub, IRole.Cultist, IRole.SerialKiller }.Contains(check.PlayerRole))
+                    if (!new[] { IRole.Wolf, IRole.AlphaWolf, IRole.WolfCub, IRole.Cultist, IRole.SerialKiller, IRole.Sorcerer, IRole.DarkOwl, IRole.Terrorist, IRole.Tanner }.Contains(check.PlayerRole))
                         gunner.BulletHitVillager = true;
                     check.TimeDied = DateTime.Now;
                     //update database
@@ -2518,6 +2558,10 @@ namespace Werewolf_Node
              * Wolf
              * Serial Killer
              * Cultist Hunter
+	     * Assassin
+	     * Terrorist
+	     * Dark Owl
+	     * Agent
              * Cult
              * Harlot
              * Seer
@@ -3046,6 +3090,16 @@ namespace Werewolf_Node
                                         //Send(GetLocaleString("CultAttempt"), target.Id);
                                     }
                                     break;
+				case IRole.DarkOwl:
+                                    if (target.Choice == 0 || target.Choice == -1) // stayed home
+                                        ConvertToCult(target, voteCult, Settings.DarkOwlConversionChance);
+                                    else
+                                    {
+                                        foreach (var c in voteCult)
+                                            Send(GetLocaleString("CultVisitEmpty", newbie.GetName(), target.GetName()), c.Id);
+                                        //Send(GetLocaleString("CultAttempt"), target.Id);
+                                    }
+                                    break;
                                 case IRole.Seer:
                                     ConvertToCult(target, voteCult, Settings.SeerConversionChance);
                                     break;
@@ -3069,7 +3123,6 @@ namespace Werewolf_Node
                                     break;
                                 case IRole.Doppelgänger:
                                     ConvertToCult(target, voteCult, 0);
-                                    break;
                                 default:
                                     ConvertToCult(target, voteCult);
                                     break;
@@ -4760,24 +4813,24 @@ namespace Werewolf_Node
                 switch (role)
                 {
                     case IRole.Wolf:
-                        break;
+                        rolesToAssign.Add(role);
                     case IRole.CultistHunter:
+                        rolesToAssign.Add(role);
+			break;
                     case IRole.Cultist:
-                        if (allowCult && playerCount > 10)
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     case IRole.Tanner:
-                        if (allowTanner)
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     case IRole.Fool:
-                        if (allowFool)
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     case IRole.WolfCub:
+                        rolesToAssign.Add(role);
+			break;
                     case IRole.AlphaWolf: //don't add more wolves, just replace
-                        if (rolesToAssign.Remove(IRole.Wolf))
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     default:
                         rolesToAssign.Add(role);
@@ -4794,6 +4847,7 @@ namespace Werewolf_Node
 			//Thestor -- now we're gonna remove unwanted roles
 			rolesToAssign.Remove(IRole.AlphaWolf);
 			rolesToAssign.Remove(IRole.WolfCub);
+			rolesToAssign.Remove(IRole.Wolf);
 			rolesToAssign.Remove(IRole.Villager);
 			rolesToAssign.Remove(IRole.Beholder);
 			rolesToAssign.Remove(IRole.Drunk);
@@ -4827,7 +4881,7 @@ namespace Werewolf_Node
                 List<IRole> rolesToAssign;
                 var count = Players.Count;
 
-                var balanced = false;
+                var balanced = true;
                 var attempts = 0;
                 var nonVgRoles = new[] { IRole.Cultist, IRole.SerialKiller, IRole.Tanner, IRole.Wolf, IRole.AlphaWolf, IRole.Sorcerer, IRole.WolfCub };
 
@@ -4854,22 +4908,30 @@ namespace Werewolf_Node
 					if (!rolesToAssign.Contains(IRole.Seer))
 					{
 						var toseer = rolesToAssign.IndexOf(IRole.Fool);
-							rolesToAssign[toseer] = IRole.Seer;
+						rolesToAssign[toseer] = IRole.Seer;
 					}
-					
+			
 					//Thestor -- if we have no appseer, then...
-					if (playerCount >=10)
+					if (count >=10)
 					{
 						if (!rolesToAssign.Contains(IRole.ApprenticeSeer))
 						{	
 							var toappseer = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.ApprenticeSeer;
 						}
-					}	
-					
+					}
+			
+					if (count <= 9) 
+					{
+						if (rolesToAssign.Contains(IRole.ApprenticeSeer))
+						{
+							var tofool = rolesToAssign.IndexOf(IRole.ApprenticeSeer);
+							rolesToAssign[tofool] = IRole.Fool;
+						}	
+					}
 					//Thestor -- additionally, we have to set the fixed number of wolves
 					
-					if (playerCount >= 5 && playerCount <=9) 
+					if (count >= 5 && count <=9) 
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
@@ -4878,7 +4940,7 @@ namespace Werewolf_Node
 						}
 					}	
 					
-					if (playerCount >= 10 && playerCount <= 14)
+					if (count >= 10 && count <= 14)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
@@ -4890,7 +4952,7 @@ namespace Werewolf_Node
 						}	
 					}
 
-					if (playerCount >= 15 && playerCount <= 19)
+					if (count >= 15 && count <= 19)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
@@ -4905,7 +4967,7 @@ namespace Werewolf_Node
 						}	
 					}
 					
-					if (playerCount >= 20 && playerCount <= 24)
+					if (count >= 20 && count <= 24)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
@@ -4923,7 +4985,7 @@ namespace Werewolf_Node
 						}	
 					}
 					
-					if (playerCount >= 25 && playerCount <= 35)
+					if (count >= 25 && count <= 35)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
