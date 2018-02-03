@@ -77,7 +77,12 @@ namespace Werewolf_Node.Models
         public bool DiedByVisitingKiller { get; set; } = false;
         public bool DiedByVisitingVictim { get; set; } = false;
         public bool DiedByChainedKill { get; set; } = false; //changes
-        public bool WasSavedLastNight { get; set; } = false;
+        public bool DiedByAssassinKill { get; set; } = false;  //changes
+        public bool DiedByAssassinMistake { get; set; } = false;  //changes
+        public bool DiedByTerrorist { get; set; } = false;  //changes
+        public bool DiedByExplosion { get; set; } = false;  //changes
+        public bool WasSavedLastNight { get; set; } = false; 
+        public bool WasSavedByAgent { get; set; } = false;  //changes
         public int MessageId { get; set; }
         public string Name { get; set; }
         [JsonConverter(typeof(StringEnumConverter))]
@@ -137,7 +142,7 @@ namespace Werewolf_Node.Models
         //new roles
         Sorcerer, AlphaWolf, WolfCub, Blacksmith, ClumsyGuy, Mayor, Prince,
         //thestor roles
-        Agent, DarkOwl 
+        Agent, DarkOwl, Assassin, Terrorist 
     }
 
     public enum ITeam
@@ -150,6 +155,6 @@ namespace Werewolf_Node.Models
 
     public enum KillMthd //changes here too!
     {
-        None, Lynch, Eat, Shoot, VisitWolf, VisitVictim, GuardWolf, Detected, Flee, Hunt, HunterShot, LoverDied, SerialKilled, HunterCult, GuardKiller, VisitKiller, ChainKilled, Idle, Suicide
+        None, Lynch, Eat, Shoot, VisitWolf, VisitVictim, GuardWolf, Detected, Flee, Hunt, HunterShot, LoverDied, SerialKilled, HunterCult, GuardKiller, VisitKiller, ChainKilled, BombKilled, BombSuicide, AssassinKilled, AssassinMistake, Idle, Suicide
     }
 }
