@@ -62,6 +62,8 @@ namespace Werewolf_Control.Helpers
                     return 0;
                 case IRole.GuardianAngel:
                     return 7;
+                case IRole.Agent:
+                    return 7;
                 case IRole.Detective:
                     return 6;
                 case IRole.Wolf:
@@ -94,6 +96,12 @@ namespace Werewolf_Control.Helpers
                     return 6;
                 case IRole.SerialKiller:
                     return 15;
+                case IRole.Assassin:
+                    return 15;
+                case IRole.Terrorist:
+                    return 7;
+                case IRole.DarkOwl:
+                    return 3;
                 case IRole.Sorcerer:
                     return 2;
                 case IRole.AlphaWolf:
