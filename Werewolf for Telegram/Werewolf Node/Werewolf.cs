@@ -4742,7 +4742,7 @@ namespace Werewolf_Node
 
 #endregion
 	
-#elseif (mode == "Foolish")
+#else
 	#region Roles
 	
         string GetDescription(IRole en)
