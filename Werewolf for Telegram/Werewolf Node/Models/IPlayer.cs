@@ -76,6 +76,7 @@ namespace Werewolf_Node.Models
         public IRole KilledByRole { get; set; }
         public bool DiedByVisitingKiller { get; set; } = false;
         public bool DiedByVisitingVictim { get; set; } = false;
+        public bool DiedByChainedKill { get; set; } = false;
         public bool WasSavedLastNight { get; set; } = false;
         public int MessageId { get; set; }
         public string Name { get; set; }
