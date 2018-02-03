@@ -19,6 +19,7 @@ namespace Werewolf_Node.Models
         public string NoWinner { get; set; }
         public string StartGame { get; set; }
         public string StartChaosGame { get; set; }
+        public string StartFoolishGame { get; set; }
         public string TannerWin { get; set; }
         public string CultWins { get; set; }
         public string SerialKillerWins { get; set; }
