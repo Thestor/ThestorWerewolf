@@ -146,7 +146,7 @@ namespace Werewolf_Node
 							if (gifset.StartFoolishGame != null)
 							{
 								StartFoolishGame.Clear();
-								StartFoolishGame.Add(gifset.StartGame);
+								StartFoolishGame.Add(gifset.StartFoolishGame);
 							}	
                         }
                     }
