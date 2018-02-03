@@ -155,6 +155,6 @@ namespace Werewolf_Node.Models
 
     public enum KillMthd
     {
-        None, Lynch, Eat, Shoot, VisitWolf, VisitVictim, GuardWolf, Detected, Flee, Hunt, HunterShot, LoverDied, SerialKilled, HunterCult, GuardKiller, VisitKiller, ChainKilled, BombKilled, BombSuicide, AssassinKilled, AssassinMistake, Idle, Suicide
+        None, Lynch, Eat, Shoot, VisitWolf, VisitVictim, GuardWolf, Detected, Flee, Hunt, HunterShot, LoverDied, SerialKilled, HunterCult, GuardKiller, VisitKiller, ChainKilled, BombKilled, BombSuicide, AssassinKilled, AssassinMistake, AssassinCult, Idle, Suicide
     }
 }
