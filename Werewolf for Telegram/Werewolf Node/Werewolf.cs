@@ -4750,7 +4750,7 @@ namespace Werewolf_Node
             return GetLocaleString(en.ToString()).ToBold();
         }
 
-        private static List<IRole> GetRoleList(int playerCount, bool allowCult = true, bool allowTanner = true, bool allowFool = true)
+       private static List<IRole> GetRoleList(int playerCount, bool allowCult = true, bool allowTanner = true, bool allowFool = true)
         {
             var rolesToAssign = new List<IRole>();
             //Thestor -- need to set the max wolves so game doesn't end immediately - 20% max wolf population. Maximum wolves are 5. I removed this code, however.
@@ -4760,24 +4760,24 @@ namespace Werewolf_Node
                 switch (role)
                 {
                     case IRole.Wolf:
-                        break;
+                        rolesToAssign.Add(role);
                     case IRole.CultistHunter:
+                        rolesToAssign.Add(role);
+			break;
                     case IRole.Cultist:
-                        if (allowCult && playerCount > 10)
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     case IRole.Tanner:
-                        if (allowTanner)
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     case IRole.Fool:
-                        if (allowFool)
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     case IRole.WolfCub:
+                        rolesToAssign.Add(role);
+			break;
                     case IRole.AlphaWolf: //don't add more wolves, just replace
-                        if (rolesToAssign.Remove(IRole.Wolf))
-                            rolesToAssign.Add(role);
+                        rolesToAssign.Add(role);
                         break;
                     default:
                         rolesToAssign.Add(role);
@@ -4794,6 +4794,7 @@ namespace Werewolf_Node
 			//Thestor -- now we're gonna remove unwanted roles
 			rolesToAssign.Remove(IRole.AlphaWolf);
 			rolesToAssign.Remove(IRole.WolfCub);
+			rolesToAssign.Remove(IRole.Wolf);
 			rolesToAssign.Remove(IRole.Villager);
 			rolesToAssign.Remove(IRole.Beholder);
 			rolesToAssign.Remove(IRole.Drunk);
@@ -4827,7 +4828,7 @@ namespace Werewolf_Node
                 List<IRole> rolesToAssign;
                 var count = Players.Count;
 
-                var balanced = false;
+                var balanced = true;
                 var attempts = 0;
                 var nonVgRoles = new[] { IRole.Cultist, IRole.SerialKiller, IRole.Tanner, IRole.Wolf, IRole.AlphaWolf, IRole.Sorcerer, IRole.WolfCub };
 
@@ -4839,10 +4840,12 @@ namespace Werewolf_Node
                         throw new IndexOutOfRangeException("Unable to create a balanced game.  Please try again.\nPlayer count: " + count);
                     }
 
-			// i removed something here
+
                     //determine which roles should be assigned
-			
-			rolesToAssign.Shuffle();
+                    rolesToAssign = GetRoleList(count, DbGroup.HasFlag(GroupConfig.AllowCult), DbGroup.HasFlag(GroupConfig.AllowTanner),
+                        DbGroup.HasFlag(GroupConfig.AllowFool));
+                    rolesToAssign.Shuffle();
+                    rolesToAssign = rolesToAssign.Take(count).ToList();
 
 
 
@@ -4852,22 +4855,30 @@ namespace Werewolf_Node
 					if (!rolesToAssign.Contains(IRole.Seer))
 					{
 						var toseer = rolesToAssign.IndexOf(IRole.Fool);
-							rolesToAssign[toseer] = IRole.Seer;
+						rolesToAssign[toseer] = IRole.Seer;
 					}
-					
+			
 					//Thestor -- if we have no appseer, then...
-					if (playerCount >=10)
+					if (count >=10)
 					{
 						if (!rolesToAssign.Contains(IRole.ApprenticeSeer))
 						{	
 							var toappseer = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.ApprenticeSeer;
 						}
-					}	
-					
+					}
+			
+					if (count <= 9) 
+					{
+						if (rolesToAssign.Contains(IRole.ApprenticeSeer))
+						{
+							var tofool = rolesToAssign.IndexOf(IRole.ApprenticeSeer);
+							rolesToAssign[tofool] = IRole.Fool;
+						}	
+					}
 					//Thestor -- additionally, we have to set the fixed number of wolves
 					
-					if (playerCount >= 5 && playerCount <=9) 
+					if (count >= 5 && count <=9) 
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
@@ -4876,67 +4887,67 @@ namespace Werewolf_Node
 						}
 					}	
 					
-					if (playerCount >= 10 && playerCount <= 14)
+					if (count >= 10 && count <= 14)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
 						}	
 					}
 
-					if (playerCount >= 15 && playerCount <= 19)
+					if (count >= 15 && count <= 19)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-							
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff3 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff3] = IRole.Wolf;
 						}	
 					}
 					
-					if (playerCount >= 20 && playerCount <= 24)
+					if (count >= 20 && count <= 24)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-							
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
-								
+							Thread.Sleep(50);
 							var towuff3 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff3] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff4 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff4] = IRole.Wolf;
 						}	
 					}
 					
-					if (playerCount >= 25 && playerCount <= 35)
+					if (count >= 25 && count <= 35)
 					{
 						if (!rolesToAssign.Contains(IRole.Wolf))
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-							
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff3 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff3] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff4 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff4] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff5 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff5] = IRole.Wolf;
 						}	
