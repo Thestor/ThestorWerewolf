@@ -110,6 +110,7 @@ namespace Werewolf_Node
             BlacksmithConversionChance = 75,
             HarlotDiscoverCultChance = 50,
             ChanceDetectiveCaught = 40,
+	    HunterKillCultChance = 50,
 
 #else
             PlayerCountSeerCursed = 6,
@@ -148,6 +149,7 @@ namespace Werewolf_Node
             BlacksmithConversionChance = 75,
             HarlotDiscoverCultChance = 50,
             ChanceDetectiveCaught = 40,
+	    HunterKillCultChance = 50,
 #endif
 
             GameJoinTime = 180,
