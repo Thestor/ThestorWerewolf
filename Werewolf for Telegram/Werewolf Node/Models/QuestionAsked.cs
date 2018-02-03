@@ -7,7 +7,7 @@
         public int MessageId { get; set; }
     }
 
-    public enum QuestionType
+    public enum QuestionType //changes
     {
         Lynch,
         Kill,
@@ -17,7 +17,7 @@
         Guard,
         Detect,
         Convert,
-        Fly, //changes
+        Fly,
         RoleModel,
         Hunt,
         HunterKill,
