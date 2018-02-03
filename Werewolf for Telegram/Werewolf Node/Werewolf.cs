@@ -4814,6 +4814,7 @@ namespace Werewolf_Node
                 {
                     case IRole.Wolf:
                         rolesToAssign.Add(role);
+			break;
                     case IRole.CultistHunter:
                         rolesToAssign.Add(role);
 			break;
@@ -4946,7 +4947,7 @@ namespace Werewolf_Node
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-								
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
 						}	
@@ -4958,10 +4959,10 @@ namespace Werewolf_Node
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-							
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff3 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff3] = IRole.Wolf;
 						}	
@@ -4973,13 +4974,13 @@ namespace Werewolf_Node
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-							
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff3 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff3] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff4 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff4] = IRole.Wolf;
 						}	
@@ -4991,16 +4992,16 @@ namespace Werewolf_Node
 						{
 							var towuff = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff] = IRole.Wolf;
-							
+							Thread.Sleep(50);
 							var towuff2 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff2] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff3 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff3] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff4 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff4] = IRole.Wolf;
-								
+							Thread.Sleep(50);	
 							var towuff5 = rolesToAssign.IndexOf(IRole.Fool);
 							rolesToAssign[towuff5] = IRole.Wolf;
 						}	
