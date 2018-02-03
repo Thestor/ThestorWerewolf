@@ -7,7 +7,7 @@
         public int MessageId { get; set; }
     }
 
-    public enum QuestionType //changes
+    public enum QuestionType
     {
         Lynch,
         Kill,
