@@ -217,6 +217,18 @@
   <string key="RoleInfoCultistHunter" >
     <value >You are the Cultist Hunter, trying to stop the cult in town from converting everyone!  Each night, choose a player.  If they are a cultist, they die.  If the cult tries to convert you, the cult's newest member dies.</value>
   </string>
+  <string key="RoleInfoAgent" >
+    <value >Having a muscular body and an ironlike shield are gifts. You are the Agent, able to guard whoever you want, even the Serial Killer 🔪 or the wolves. However, if you are killed, the person guarded also dies. You may never guard the same person twice in a row. Can be converted into a cultist by a 60% chance.</value>
+  </string>
+  <string key="RoleInfoDarkOwl" >
+    <value >An animal supporting the wolves, helping them by watching over a player every night. You, the Dark Owl, may check whether a player is sleeping or not sleeping. Players who are not sleeping are those who have night roles. Furthermore, if these players choose skip, then they are considered sleeping. Acting as a visitting role. Can never be converted into a cultist.</value>
+  </string>
+  <string key="RoleInfoTerrorist" >
+    <value >A self-dependant role who works for the Wolf Team. Being an independent guy helps you become a suicidal bomber. You can choose who to bomb in the night. If that person is from the Village Team or the Cultist Team, you will die with that person. If that person is from the Serial Killer or the Wolf Team, except for the sorcerer and the dark owl, you will commit suicide. Explosion bypasses shields (GA or The Agent). Identified as a Villager to Seer. Can be converted into a cultist for a 80% chance.</value>
+  </string>
+  <string key="RoleInfoAssassin" >
+    <value >This may be the hardest role. Every night you, The Assassin, may choose a player to kill. If the selected person is an enemy, he will die. Does not include the tanner. Otherwise, the Assassin and the selected person will die. This role works for the Village Team. Conversion rate is 40%. If conversion fails, he will kill the visitting cultist.</value>
+  </string>
   <string key="LynchTime" >
     <!-- 0 - number of seconds -->
     <value>
@@ -485,6 +497,18 @@
   </string>
   <string key="CultistHunter">
     <value>the Cultist Hunter 💂</value>
+  </string>
+  <string key="Agent">
+    <value>the Agent 🛡</value>
+  </string>
+  <string key="DarkOwl">
+    <value>the Dark Owl 🦉</value>
+  </string>
+  <string key="Terrorist">
+    <value>the Terrorist 💣</value>
+  </string>
+  <string key="Assassin">
+    <value>the Assassin ⚔️</value>
   </string>
   <!-- These are for the player list -->
   <string key="RanAway">
