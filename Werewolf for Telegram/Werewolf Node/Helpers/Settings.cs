@@ -22,13 +22,14 @@ namespace Werewolf_Node
 
 
 #if RELEASE2
-          public static List<string> VillagerDieImages = new List<string> { "CgADBAAD2YUAAgobZAdLjy_G9R1OWgI" }; //laughing dog
+         public static List<string> VillagerDieImages = new List<string> { "CgADBAAD2YUAAgobZAdLjy_G9R1OWgI" }; //laughing dog
         public static List<string> WolfWin = new List<string> { "CgADBAADp6AAAs4XZAd1OT59fE5v8gI" }; //1 wolf
         public static List<string> WolvesWin = new List<string> { "CgADBAAD8hUAAhYYZAfHjrJdIrslmgI" }; //2 wolves
         public static List<string> VillagersWin = new List<string> { "CgADBAADPqUAAvsYZAdpARA80fkboQI" }; //snowy village
         public static List<string> NoWinner = new List<string> { "CgADBAADq4EAAiscZAcQuPr65RLBqgI" }; // Loser
         public static List<string> StartGame = new List<string> { "CgADBAADs4IAAqEZZAfQEF0nCx7twAI" }; //"oh boy, here we go"
         public static List<string> StartChaosGame = new List<string> { "CgADAgADSwIAAhA_yUrrYsX5BcqIEwI" }; //rainbow-moon
+		public static List<string> StartFoolishGame = new List<string> { "CgADBAADfJ8AAsgaZAeXaDti_8DimQI", "CgADBAAD354AAq0bZAd6wm1cXDCn-QI" }; //sound like a fool, not ordinary fool
         public static List<string> TannerWin = new List<string> { "CgADBAADmJ8AAnoZZAcJ08js65-tDwI" }; //weird guy
         public static List<string> CultWins = new List<string> { "CgADAgADSgIAAhA_yUoTBhYc4sCvMwI" }; //girl eating worms
         public static List<string> SerialKillerWins = new List<string> { "CgADBAADZgMAAp0YZAch-MOWBmoFVQI" }; //cat with knife
@@ -41,6 +42,7 @@ namespace Werewolf_Node
         public static List<string> NoWinner = new List<string> { "CgADBAADq4EAAiscZAcQuPr65RLBqgI" }; // Loser
         public static List<string> StartGame = new List<string> { "CgADBAADs4IAAqEZZAfQEF0nCx7twAI" }; //"oh boy, here we go"
         public static List<string> StartChaosGame = new List<string> { "CgADAgADSwIAAhA_yUrrYsX5BcqIEwI" }; //rainbow-moon
+		public static List<string> StartFoolishGame = new List<string> { "CgADBAADfJ8AAsgaZAeXaDti_8DimQI", "CgADBAAD354AAq0bZAd6wm1cXDCn-QI" }; //sound like a fool, not ordinary fool
         public static List<string> TannerWin = new List<string> { "CgADBAADmJ8AAnoZZAcJ08js65-tDwI" }; //weird guy
         public static List<string> CultWins = new List<string> { "CgADAgADSgIAAhA_yUoTBhYc4sCvMwI" }; //girl eating worms
         public static List<string> SerialKillerWins = new List<string> { "CgADBAADZgMAAp0YZAch-MOWBmoFVQI" }; //cat with knife
@@ -53,6 +55,7 @@ namespace Werewolf_Node
         public static List<string> NoWinner = new List<string> { "CgADBAADq4EAAiscZAcQuPr65RLBqgI" }; // Loser
         public static List<string> StartGame = new List<string> { "CgADBAADs4IAAqEZZAfQEF0nCx7twAI" }; //"oh boy, here we go"
         public static List<string> StartChaosGame = new List<string> { "CgADAgADSwIAAhA_yUrrYsX5BcqIEwI" }; //rainbow-moon
+		public static List<string> StartFoolishGame = new List<string> { "CgADBAADfJ8AAsgaZAeXaDti_8DimQI", "CgADBAAD354AAq0bZAd6wm1cXDCn-QI" }; //sound like a fool, not ordinary fool
         public static List<string> TannerWin = new List<string> { "CgADBAADmJ8AAnoZZAcJ08js65-tDwI" }; //weird guy
         public static List<string> CultWins = new List<string> { "CgADAgADSgIAAhA_yUoTBhYc4sCvMwI" }; //girl eating worms
         public static List<string> SerialKillerWins = new List<string> { "CgADBAADZgMAAp0YZAch-MOWBmoFVQI" }; //cat with knife
@@ -85,11 +88,7 @@ namespace Werewolf_Node
             PlayerCountWildChild = 17,
             PlayerCountFoolChance = 18,
             PlayerCountMasons = 21,
-            PlayerCountDoppelGanger = 22,
-            PlayerCountCupid = 23,
-            PlayerCountHunter = 24,
-            PlayerCountSerialKiller = 25,
-            PlayerCountSecondCultist = 26,
+            PlayerCountSecondCultist = 22,
             MaxGames = 80,
             TannerChance = 40,
             FoolChance = 20,
@@ -99,17 +98,13 @@ namespace Werewolf_Node
             DetectiveConversionChance = 70,
             CursedConversionChance = 60,
             HarlotConversionChance = 70,
-            HarlotDiscoverCultChance = 50,
-            ChanceDetectiveCaught = 40,
-            HunterConversionChance = 50,
-            HunterKillCultChance = 50,
-            HunterKillWolfChanceBase = 30,
-            SerialKillerConversionChance = 20,
-            AlphaWolfConversionChance = 20,
             SorcererConversionChance = 40,
             BlacksmithConversionChance = 75,
+            HarlotDiscoverCultChance = 50,
+            ChanceDetectiveCaught = 40,
+
 #else
-             PlayerCountSeerCursed = 6,
+            PlayerCountSeerCursed = 6,
             PlayerCountHarlot = 7,
             PlayerCountBeholderChance = 8,
             PlayerCountSecondWolf = 9,
@@ -123,11 +118,7 @@ namespace Werewolf_Node
             PlayerCountWildChild = 17,
             PlayerCountFoolChance = 18,
             PlayerCountMasons = 21,
-            PlayerCountDoppelGanger = 22,
-            PlayerCountCupid = 23,
-            PlayerCountHunter = 24,
-            PlayerCountSerialKiller = 25,
-            PlayerCountSecondCultist = 26,
+            PlayerCountSecondCultist = 22,
             MaxGames = 80,
             TannerChance = 40,
             FoolChance = 20,
@@ -137,15 +128,10 @@ namespace Werewolf_Node
             DetectiveConversionChance = 70,
             CursedConversionChance = 60,
             HarlotConversionChance = 70,
-            HarlotDiscoverCultChance = 50,
-            ChanceDetectiveCaught = 40,
-            HunterConversionChance = 50,
-            HunterKillCultChance = 50,
-            HunterKillWolfChanceBase = 30,
-            SerialKillerConversionChance = 20,
-            AlphaWolfConversionChance = 20,
             SorcererConversionChance = 40,
             BlacksmithConversionChance = 75,
+            HarlotDiscoverCultChance = 50,
+            ChanceDetectiveCaught = 40,
 #endif
 
             GameJoinTime = 180,
