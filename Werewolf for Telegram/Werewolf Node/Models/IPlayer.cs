@@ -136,7 +136,7 @@ namespace Werewolf_Node.Models
     }
 
 
-    public enum IRole //changes here too!
+    public enum IRole
     {
         Villager, Drunk, Harlot, Seer, Traitor, GuardianAngel, Detective, Wolf, Cursed, Gunner, Tanner, Fool, WildChild, Beholder, ApprenticeSeer, Cultist, CultistHunter, Mason, Doppelgänger, Cupid, Hunter, SerialKiller,
         //new roles
@@ -153,7 +153,7 @@ namespace Werewolf_Node.Models
         NoOne
     }
 
-    public enum KillMthd //changes here too!
+    public enum KillMthd
     {
         None, Lynch, Eat, Shoot, VisitWolf, VisitVictim, GuardWolf, Detected, Flee, Hunt, HunterShot, LoverDied, SerialKilled, HunterCult, GuardKiller, VisitKiller, ChainKilled, BombKilled, BombSuicide, AssassinKilled, AssassinMistake, Idle, Suicide
     }
