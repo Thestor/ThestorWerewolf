@@ -76,7 +76,7 @@ namespace Werewolf_Node.Models
         public IRole KilledByRole { get; set; }
         public bool DiedByVisitingKiller { get; set; } = false;
         public bool DiedByVisitingVictim { get; set; } = false;
-        public bool DiedByChainedKill { get; set; } = false;
+        public bool DiedByChainedKill { get; set; } = false; //changes
         public bool WasSavedLastNight { get; set; } = false;
         public int MessageId { get; set; }
         public string Name { get; set; }
@@ -131,13 +131,13 @@ namespace Werewolf_Node.Models
     }
 
 
-    public enum IRole
+    public enum IRole //changes here too!
     {
         Villager, Drunk, Harlot, Seer, Traitor, GuardianAngel, Detective, Wolf, Cursed, Gunner, Tanner, Fool, WildChild, Beholder, ApprenticeSeer, Cultist, CultistHunter, Mason, Doppelgänger, Cupid, Hunter, SerialKiller,
         //new roles
         Sorcerer, AlphaWolf, WolfCub, Blacksmith, ClumsyGuy, Mayor, Prince,
         //thestor roles
-        Agent, DarkOwl
+        Agent, DarkOwl 
     }
 
     public enum ITeam
@@ -148,7 +148,7 @@ namespace Werewolf_Node.Models
         NoOne
     }
 
-    public enum KillMthd
+    public enum KillMthd //changes here too!
     {
         None, Lynch, Eat, Shoot, VisitWolf, VisitVictim, GuardWolf, Detected, Flee, Hunt, HunterShot, LoverDied, SerialKilled, HunterCult, GuardKiller, VisitKiller, ChainKilled, Idle, Suicide
     }
