@@ -2975,6 +2975,29 @@ namespace Werewolf_Node
                             //check if they are the hunter
                             switch (target.PlayerRole)
                             {
+                                case IRole.Assassin:
+                                    //first, check if they got converted....
+                                    if (Program.R.Next(100) < Settings.AssassinConversionChance)
+                                    {
+                                        ConvertToCult(target, voteCult);
+                                    }
+                                    else
+                                    {
+                                        newbie.DiedLastNight = true;
+                                        newbie.IsDead = true;
+                                        newbie.TimeDied = DateTime.Now;
+                                        newbie.KilledByRole = IRole.Assassin;
+                                        newbie.DiedByVisitingKiller = true;
+                                        DBKill(target, newbie, KillMthd.AssassinCult);
+                                        //notify everyone
+                                        foreach (var c in voteCult)
+                                        {
+                                            Send(GetLocaleString("CultConvertAssassin", newbie.GetName(), target.GetName()), c.Id);
+				        }
+					Send(GetLocaleString("CultAttemptAS"), target.Id);
+			            }	
+				    break;
+					    
                                 case IRole.Hunter:
                                     //first, check if they got converted....
                                     if (Program.R.Next(100) < Settings.HunterConversionChance)
@@ -3100,6 +3123,10 @@ namespace Werewolf_Node
                                         //Send(GetLocaleString("CultAttempt"), target.Id);
                                     }
                                     break;
+				case IRole.Terrorist:
+				    ConvertToCult(target, voteCult, Settings.TerroristConversionChance);
+				case IRole.Agent
+				    ConvertToCult(target, voteCult, Settings.AgentConversionChance);
                                 case IRole.Seer:
                                     ConvertToCult(target, voteCult, Settings.SeerConversionChance);
                                     break;
@@ -3211,14 +3238,22 @@ namespace Werewolf_Node
                                 }
                                 else
                                 {
-                                    Send(
-                                        (target.PlayerRole == IRole.Cultist && Program.R.Next(100) < Settings.HarlotDiscoverCultChance) ?
-                                            GetLocaleString("HarlotDiscoverCult", target.GetName()) :
-                                            GetLocaleString("HarlotVisitNonWolf", target.GetName()),
-                                        harlot.Id);
-                                    if (!target.IsDead)
-                                        Send(GetLocaleString("HarlotVisitYou"), target.Id);
-                                }
+				    if (target.PlayerRole == IRole.DarkOwl && !target.DiedLastNight)
+				    {
+			   		Send(GetLocaleString("HarlotVisitOwl", target.GetName()), harlot.Id);
+				    }
+					
+				    else	
+				    {
+					    Send(
+                                            (target.PlayerRole == IRole.Cultist && Program.R.Next(100) < Settings.HarlotDiscoverCultChance) ?
+                                                GetLocaleString("HarlotDiscoverCult", target.GetName()) :
+                                                GetLocaleString("HarlotVisitNonWolf", target.GetName()),
+                                            harlot.Id);
+                                        if (!target.IsDead)
+                                            Send(GetLocaleString("HarlotVisitYou"), target.Id);
+                                    }
+				}	
                                 break;
                         }
                     }
