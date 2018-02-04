@@ -16,7 +16,7 @@
   </string>
 	<!-- Foolish game update -->
     <!-- 0 - Player name -->
-	<string key="PlayerStartedFoolishGame" isgif="true">
+  <string key="PlayerStartedFoolishGame" isgif="true">
     <value>{0} has started a foolish game! Join to get in on the fun... and probably die :P</value>
     <value>A new foolish game has been started by {0}! Join to get eaten!</value>
   </string>
@@ -286,7 +286,7 @@
   </string>
   <string key="HunterKilledCultist">
     <!-- 0 - victim name -->
-    <value>A noticeable stench is coming from {0}'s house...  the village inspects it to find a body lying in front of a dark altar. A cultist has been killed by the cult hunter!</value>
+    <value>A noticeable stench is coming from {0}'s house...  the village inspects it to find a body lying in front of a dark altar. A cultist has been killed!</value>
   </string>
   <string key="NoAttack" >
     <value >The villagers gather the next morning in the village center, to sighs of relief - it appears there was no attack the previous night.</value>
@@ -1499,5 +1499,15 @@
     <value>{0} opens their eyes, but instead of hearing the usual bustle of the village, they are met with silence. They stare at the dreary ceiling, letting reality slowly sink in. Everyone was dead. The wolves were dead. With a pang in their heart, {0} gets up, and packs their things, before walking to the edge of the village. A tear slips from their eye, as {0} recalls how close they and their wolves were to victory. Alas, it was time to start a new life, with a new pack. {0} slips into the darkness of the forest, away from the quiet village.</value>
     <value>For all of {0}'s efforts, {0}'s wolf friends lay motionless and lifeless. Even if the wolves have been brought victory, there is no one to savour the success with, neither are there any living villagers to mock at. {0} peers into the crystal ball, and silently disappears, in a cloud of fog, in search of new wolves, new allies, and new treachery to commit new crimes against humanity.</value>
   </string>
-  
+	
+  <string key="CultConvertAssassin">
+    <value>You sent {0} to convert {1}, but they did not come back. All that you assume is that the Assassin has slayed them.</value>
+  </string>
+  <string key="CultAttemptAS">
+    <value>A hooded figure visited your house last night. Assuming they might be evil, you shoved your sword and slashed through them.</value>
+  </string>
+  <string key="AssassinKilledCultist">
+    <value>A noticeable stench is coming from {0}'s house...  the village inspects it to find a body lying in front of a dark altar. A cultist has been killed!</value>
+  </string>
+	
 </strings>
