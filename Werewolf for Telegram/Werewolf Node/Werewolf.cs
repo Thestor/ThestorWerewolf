@@ -2555,17 +2555,17 @@ namespace Werewolf_Node
 
 
             /* Role priority:
+	     * Assassin
+	     * Terrorist
              * Wolf
              * Serial Killer
              * Cultist Hunter
-	     * Assassin
-	     * Terrorist
-	     * Dark Owl
-	     * Agent
              * Cult
+	     * Dark Owl
              * Harlot
              * Seer
              * Fool
+	     * Agent
              * GA
              */
 
