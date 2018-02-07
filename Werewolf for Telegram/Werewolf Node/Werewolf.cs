@@ -3240,7 +3240,14 @@ namespace Werewolf_Node
                                 {
 				    if (target.PlayerRole == IRole.DarkOwl && !target.DiedLastNight)
 				    {
-			   		Send(GetLocaleString("HarlotVisitOwl", target.GetName()), harlot.Id);
+					if (target.Choice == 0 || target.Choice == -1) //stayed home
+					{					
+						Send(GetLocaleString("HarlotVisitNonWolf", target.GetName()), harlot.Id);
+					}
+					else
+					{
+			   			Send(GetLocaleString("HarlotVisitOwl", target.GetName()), harlot.Id);
+					}	
 				    }
 					
 				    else	
