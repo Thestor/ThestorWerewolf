@@ -67,7 +67,7 @@ namespace Werewolf_Node
             VillagersWin,
             NoWinner,
             StartGame,
-		StartFoolishGame,
+	    StartFoolishGame,
             StartChaosGame,
             TannerWin,
             CultWins,
@@ -2575,6 +2575,7 @@ namespace Werewolf_Node
 
             if (CheckForGameEnd()) return;
             var ga = Players.FirstOrDefault(x => x.PlayerRole == IRole.GuardianAngel & !x.IsDead && x.Choice != 0 && x.Choice != -1);
+	    var ag = Players.FirstOrDefault(x => x.PlayerRole == IRole.Agent & !x.IsDead && x.Choice != 0 && x.Choice != -1);
             var voteWolves = wolves.Where(x => !x.Drunk);
             var voteWolvesCount = voteWolves.Count();
 
@@ -2634,6 +2635,15 @@ namespace Werewolf_Node
                             //Send(GetLocaleString("GuardSavedYou"), target.Id);
                             target.WasSavedLastNight = true;
                         }
+			else if (ag?.Choice == target.Id &&
+			    !(target.PlayerRole == IRole.Harlot && (target.Choice == 0 || target.Choice == -1)))
+			{
+			    foreach (var wolf in voteWolves)
+				Send(GetLocaleString("AgentBlockedWolf", target.GetName()), wolf.Id);
+                            //Send(GetLocaleString("AgentSaved", target.Name), ga.Id);
+                            //Send(GetLocaleString("AgentSavedYou"), target.Id);
+                            target.WasSavedLastNight = true;
+			}
                         else
                         {
                             var bitten = voteWolves.Any(x => x.PlayerRole == IRole.AlphaWolf) && Program.R.Next(100) < Settings.AlphaWolfConversionChance;
