@@ -1509,5 +1509,8 @@
   <string key="AssassinKilledCultist">
     <value>A noticeable stench is coming from {0}'s house...  the village inspects it to find a body lying in front of a dark altar. A cultist has been killed!</value>
   </string>
+  <string key="AgentBlocked">
+    <value>As you went to engage in a fight with {0}, you realized a big truck had hindered you from attacking. Risky, you returned without a kill.</value>
+  </string>
 	
 </strings>
