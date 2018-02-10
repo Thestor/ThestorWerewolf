@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Werewolf_Control.Models
+namespace Werewolf_Node.Models
 {
     public class CustomGifData
     {
         public bool HasPurchased { get; set; }
         public bool? Approved { get; set; } = null;
-        public string DenyReason { get; set; }
         public bool NSFW { get; set; }
         public int ApprovedBy { get; set; }
         public string VillagerDieImage { get; set; }
@@ -20,6 +19,7 @@ namespace Werewolf_Control.Models
         public string NoWinner { get; set; }
         public string StartGame { get; set; }
         public string StartChaosGame { get; set; }
+        public string StartFoolishGame { get; set; }
         public string TannerWin { get; set; }
         public string CultWins { get; set; }
         public string SerialKillerWins { get; set; }

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Telegram.Bot.Types;
 
-namespace Werewolf_Control.Models
+namespace Werewolf_Node.Models
 {
     public class NodeInfo
     {
@@ -22,13 +19,14 @@ namespace Werewolf_Control.Models
         public string Version { get; set; }
         public bool ShuttingDown { get; set; }
         public int MessagesSent { get; set; }
+
     }
 
     public class ClientRegistrationInfo
     {
         public string JType { get; set; } = "ClientRegistrationInfo";
         public Guid ClientId { get; set; }
-        public string Secret { get; set; }
+        public string Secret => Environment.MachineName.GetHashCode().ToString();
     }
 
     public class PlayerJoinInfo
@@ -79,6 +77,12 @@ namespace Werewolf_Control.Models
         public long GroupId { get; set; }
     }
 
+    public class UpdateNodeInfo
+    {
+        public string JType { get; set; } = "UpdateNodeInfo";
+        public bool Kill { get; set; } = false;
+    }
+
     public class LoadLangInfo
     {
         public string JType { get; set; } = "LoadLangInfo";
@@ -92,13 +96,6 @@ namespace Werewolf_Control.Models
         public int UserId { get; set; }
         public long GroupId { get; set; }
     }
-
-    public class UpdateNodeInfo
-    {
-        public string JType { get; set; } = "UpdateNodeInfo";
-        public bool Kill { get; set; } = false;
-    }
-
     public class CallbackInfo
     {
         public string JType { get; set; } = "CallbackInfo";
@@ -110,7 +107,6 @@ namespace Werewolf_Control.Models
         public string JType { get; set; } = "SkipVoteInfo";
         public long GroupId { get; set; }
     }
-
     public class GameKillInfo
     {
         public string JType { get; set; } = "GameKillInfo";
@@ -125,11 +121,4 @@ namespace Werewolf_Control.Models
         public bool Admin { get; set; }
         public int Seconds { get; set; }
     }
-
-    public class JoinButtonRequestInfo
-    {
-        public string JType { get; set; } = "JoinButtonRequestInfo";
-        public long GroupId { get; set; }
-    }
-
 }
