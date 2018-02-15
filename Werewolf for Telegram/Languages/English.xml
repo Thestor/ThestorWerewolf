@@ -1512,5 +1512,14 @@
   <string key="AgentBlocked">
     <value>As you went to engage in a fight with {0}, you realized a big truck had hindered you from attacking. Risky, you returned without a kill.</value>
   </string>
+  <string key="TerroristSuicideTRPM">
+    <value>You activated your bomb and hung out with {0} at their house. AFter realizing that they are likely to be one of your allies, you sprinted out and exploded yourself outside.</value>
+  </string>
+  <string key="TerroristBombedYou">
+    <value>Last night, you trusted {0} so much that you had given him an opportunity to explode you. And, now you are dead!</value>
+  </string>
+  <string key="TerroristBombedYouButFail">
+    <value>Last night, you trusted {0} so much that you had given him an opportunity to explode you. You told them about you are and, suddenly, they sprinted out! How strange!</value>
+  </string>
 	
 </strings>
