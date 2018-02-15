@@ -2569,6 +2569,85 @@ namespace Werewolf_Node
              * GA
              */
 
+#region Assassin Night
+	
+	    //give assassin a chance!
+            var assassin = Players.FirstOrDefault(x => x.PlayerRole == IRole.Assassin & !x.IsDead && x.Choice != 0 && x.Choice != -1);
+            if (assassin != null)
+            {
+                var execution = Players.FirstOrDefault(x => x.Id == assassin.Choice && !x.IsDead);
+                if (execution != null)
+                {
+                    execution.BeingVisitedSameNightCount++;
+                    if (execution.PlayerRole != IRole.Sorcerer || IRole.Wolf || IRole.AlphaWolf || IRole.WolfCub || IRole.Cultist || IRole.SerialKiller || IRole.Terrorist || IRole.DarkOwl)
+		    {
+                        execution.DiedLastNight = true;
+                        execution.IsDead = true;
+                        execution.TimeDied = DateTime.Now;
+                        execution.KilledByRole = IRole.Assassin;
+                        DBKill(assassin, execution, KillMthd.AssassinMistake);
+			    
+			assassin.DiedLastNight = true;
+                        assassin.IsDead = true;
+                        assassin.TimeDied = DateTime.Now;
+                        assassin.KilledByRole = IRole.Assassin;
+                        DBKill(assassin, assassin, KillMthd.AssassinGuilty);
+                    }
+                    else
+                    {
+                        execution.DiedLastNight = true;
+                        execution.IsDead = true;
+                        if (execution.PlayerRole == IRole.WolfCub)
+			    WolfCubKilled = true;
+                        execution.TimeDied = DateTime.Now;
+                        execution.KilledByRole = IRole.Assassin;
+                        DBKill(assassin, execution, KillMthd.AssassinKilled);
+                    }
+                }
+            } 
+	
+#region Terrorist Night
+	
+	    var tr = PLayers.FirstOrDefault(x => x.PLayerRole == IRole.Terrorist & !x.IsDead && x.Choice != 0 && x.Choice != -1);
+	    if (tr != null)
+            {
+                var bomb = Players.FirstOrDefault(x => x.Id == assassin.Choice && !x.IsDead);
+                if (bomb != null)
+                {
+                    execution.BeingVisitedSameNightCount++;
+                    if (!bomb.IsDead)
+                        {
+                            //check if they are baddies
+                            if (bomb.PlayerRole == IRole.Wolf || IRole.WolfCub || IRole.AlphaWolf || IRole.SerialKiller)
+			    {
+					tr.DiedLastNight = true;
+                                        tr.IsDead = true;
+                                        tr.TimeDied = DateTime.Now;
+                                        tr.KilledByRole = IRole.Terrorist;
+                                        DBKill(tr, tr, KillMthd.TRSuicide);
+                                        //notify terrorist
+                                        Send(GetLocaleString("TerroristSuicideTRPM", bomb.GetName()), tr.Id);
+					Send(GetLocaleString("TerroristBombedYouButFail", tr.GetName()), bomb.Id);
+			    }	    				
+			    
+			    else 
+			    {	    
+					tr.DiedLastNight = true;
+                                        tr.IsDead = true;
+                                        tr.TimeDied = DateTime.Now;
+                                        tr.KilledByRole = IRole.Terrorist;
+                                        DBKill(tr, tr, KillMthd.TRSuicide);
+					    
+					bomb.DiedLastNight = true;
+                                        bomb.IsDead = true;
+                                        bomb.TimeDied = DateTime.Now;
+                                        bomb.KilledByRole = IRole.Terrorist;
+                                        DBKill(bomb, tr, KillMthd.BombKilled);
+                                        //notify bomb
+                                        Send(GetLocaleString("TerroristBombedYou", tr.GetName()), bomb.Id);
+			    }
+				
+		
 #region Wolf Night
 
             var wolves = nightPlayers.GetPlayersForRoles(WolfRoles).ToList();
