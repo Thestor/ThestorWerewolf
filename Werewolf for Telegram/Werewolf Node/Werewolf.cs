@@ -1891,27 +1891,7 @@ namespace Werewolf_Node
                         case IRole.Cursed:
                         case IRole.Drunk:
                         case IRole.Prince:
-			case IRole.Agent;
-                            p.HasDayAction = false;
-                            p.HasNightAction = true;
-                            p.Team = ITeam.Village;
-                            break;
-			case IRole.Terrorist;
-                            p.HasDayAction = false;
-                            p.HasNightAction = true;
-                            p.Team = ITeam.Wolf;
-                            break;
-			case IRole.DarkOwl;
-                            p.HasDayAction = false;
-                            p.HasNightAction = true;
-                            p.Team = ITeam.Wolf;
-                            break;
-			case IRole.Assassin;
-                            p.HasDayAction = false;
-                            p.HasNightAction = true;
-                            p.Team = ITeam.Village;
-                            break;
-                        case IRole.ClumsyGuy:
+			case IRole.ClumsyGuy:
                             p.HasDayAction = false;
                             p.HasNightAction = false;
                             p.Team = ITeam.Village;
@@ -2066,6 +2046,26 @@ namespace Werewolf_Node
                             p.HasDayAction = false;
                             var choices = new[] { new[] { new InlineKeyboardCallbackButton(GetLocaleString("Reveal"), $"vote|{Program.ClientId}|reveal") } }.ToList();
                             SendMenu(choices, p, GetLocaleString("AskMayor"), QuestionType.Mayor);
+                            break;
+			case IRole.Agent;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Village;
+                            break;
+			case IRole.Terrorist;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Wolf;
+                            break;
+			case IRole.DarkOwl;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Wolf;
+                            break;
+			case IRole.Assassin;
+                            p.HasDayAction = false;
+                            p.HasNightAction = true;
+                            p.Team = ITeam.Village;
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
@@ -2579,7 +2579,7 @@ namespace Werewolf_Node
                 if (execution != null)
                 {
                     execution.BeingVisitedSameNightCount++;
-                    if (execution.PlayerRole != IRole.Sorcerer || IRole.Wolf || IRole.AlphaWolf || IRole.WolfCub || IRole.Cultist || IRole.SerialKiller || IRole.Terrorist || IRole.DarkOwl)
+                    if (execution.PlayerRole != IRole.Sorcerer || execution.PlayerRole != IRole.Wolf || execution.PlayerRole != IRole.AlphaWolf || execution.PlayerRole != IRole.WolfCub || execution.PlayerRole != IRole.Cultist || execution.PlayerRole != IRole.SerialKiller || execution.PlayerRole != IRole.Terrorist || execution.PlayerRole != IRole.DarkOwl)
 		    {
                         execution.DiedLastNight = true;
                         execution.IsDead = true;
@@ -2618,7 +2618,7 @@ namespace Werewolf_Node
                     if (!bomb.IsDead)
                         {
                             //check if they are baddies
-                            if (bomb.PlayerRole == IRole.Wolf || IRole.WolfCub || IRole.AlphaWolf || IRole.SerialKiller)
+                            if (bomb.PlayerRole == IRole.Wolf || bomb.PlayerRole == IRole.WolfCub || bomb.PlayerRole == IRole.AlphaWolf || bomb.PlayerRole == IRole.SerialKiller)
 			    {
 					tr.DiedLastNight = true;
                                         tr.IsDead = true;
