@@ -2579,30 +2579,46 @@ namespace Werewolf_Node
                 if (execution != null)
                 {
                     execution.BeingVisitedSameNightCount++;
-                    if (execution.PlayerRole != IRole.Sorcerer || execution.PlayerRole != IRole.Wolf || execution.PlayerRole != IRole.AlphaWolf || execution.PlayerRole != IRole.WolfCub || execution.PlayerRole != IRole.Cultist || execution.PlayerRole != IRole.SerialKiller || execution.PlayerRole != IRole.Terrorist || execution.PlayerRole != IRole.DarkOwl)
+                    switch (execution.PlayerRole)
 		    {
-                        execution.DiedLastNight = true;
-                        execution.IsDead = true;
-                        execution.TimeDied = DateTime.Now;
-                        execution.KilledByRole = IRole.Assassin;
-                        DBKill(assassin, execution, KillMthd.AssassinMistake);
+			case IRole.Sorcerer:
+			case IRole.Wolf:
+			case IRole.AlphaWolf:
+			case IRole.Sorcerer:
+			case IRole.Wolf:
+			case IRole.Cultist:
+			case IRole.SerialKiller:
+			case IRole.Terrorist:
+			case IRole.DarkOwl:
+                        	execution.DiedLastNight = true;
+                        	execution.IsDead = true;
+                       		execution.TimeDied = DateTime.Now;
+                        	execution.KilledByRole = IRole.Assassin;
+				DBKill(assassin, execution, KillMthd.AssassinKilled);
+				break;
+			case IRole.WolfCub:
+                        	execution.DiedLastNight = true;
+                        	execution.IsDead = true;
+			    	WolfCubKilled = true;
+                       		execution.TimeDied = DateTime.Now;
+                        	execution.KilledByRole = IRole.Assassin;
+                        	DBKill(assassin, execution, KillMthd.AssassinKilled);
+				break;    
+			default:
+                        	DBKill(assassin, execution, KillMthd.AssassinKilled);
+				execution.DiedLastNight = true;
+                        	execution.IsDead = true;
+                        	execution.TimeDied = DateTime.Now;
+                        	execution.KilledByRole = IRole.Assassin;
+                        	DBKill(assassin, execution, KillMthd.AssassinMistake);
 			    
-			assassin.DiedLastNight = true;
-                        assassin.IsDead = true;
-                        assassin.TimeDied = DateTime.Now;
-                        assassin.KilledByRole = IRole.Assassin;
-                        DBKill(assassin, assassin, KillMthd.AssassinGuilty);
-                    }
-                    else
-                    {
-                        execution.DiedLastNight = true;
-                        execution.IsDead = true;
-                        if (execution.PlayerRole == IRole.WolfCub)
-			    WolfCubKilled = true;
-                        execution.TimeDied = DateTime.Now;
-                        execution.KilledByRole = IRole.Assassin;
-                        DBKill(assassin, execution, KillMthd.AssassinKilled);
-                    }
+				assassin.DiedLastNight = true;
+                        	assassin.IsDead = true;
+                        	assassin.TimeDied = DateTime.Now;
+                        	assassin.KilledByRole = IRole.Assassin;
+                        	DBKill(assassin, assassin, KillMthd.AssassinGuilty);
+				break;
+		    }
                 }
             } 
 	
@@ -2618,8 +2634,12 @@ namespace Werewolf_Node
                     if (!bomb.IsDead)
                         {
                             //check if they are baddies
-                            if (bomb.PlayerRole == IRole.Wolf || bomb.PlayerRole == IRole.WolfCub || bomb.PlayerRole == IRole.AlphaWolf || bomb.PlayerRole == IRole.SerialKiller)
+                            switch (bomb.PlayerRole)
 			    {
+				    case IRole.Wolf:
+				    case IRole.WolfCub:
+				    case IRole.AlphaWolf:
+				    case IRole.SerialKiller:
 					tr.DiedLastNight = true;
                                         tr.IsDead = true;
                                         tr.TimeDied = DateTime.Now;
@@ -2628,10 +2648,9 @@ namespace Werewolf_Node
                                         //notify terrorist
                                         Send(GetLocaleString("TerroristSuicideTRPM", bomb.GetName()), tr.Id);
 					Send(GetLocaleString("TerroristBombedYouButFail", tr.GetName()), bomb.Id);
-			    }	    				
-			    
-			    else 
-			    {	    
+					break; 
+					    
+			    	    default:    
 					tr.DiedLastNight = true;
                                         tr.IsDead = true;
                                         tr.TimeDied = DateTime.Now;
@@ -2645,6 +2664,7 @@ namespace Werewolf_Node
                                         DBKill(bomb, tr, KillMthd.BombKilled);
                                         //notify bomb
                                         Send(GetLocaleString("TerroristBombedYou", tr.GetName()), bomb.Id);
+					break;
 			    }
 				
 		
