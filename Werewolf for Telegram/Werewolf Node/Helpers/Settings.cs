@@ -29,6 +29,7 @@ namespace Werewolf_Node
         public static List<string> NoWinner = new List<string> { "CgADBAADq4EAAiscZAcQuPr65RLBqgI" }; // Loser
         public static List<string> StartGame = new List<string> { "CgADBAADs4IAAqEZZAfQEF0nCx7twAI" }; //"oh boy, here we go"
         public static List<string> StartChaosGame = new List<string> { "CgADAgADSwIAAhA_yUrrYsX5BcqIEwI" }; //rainbow-moon
+        public static List<string> StartFoolishGame = new List<string> { "CgADBAADfJ8AAsgaZAeXaDti_8DimQI" }; //"fool"
         public static List<string> TannerWin = new List<string> { "CgADBAADmJ8AAnoZZAcJ08js65-tDwI" }; //weird guy
         public static List<string> CultWins = new List<string> { "CgADAgADSgIAAhA_yUoTBhYc4sCvMwI" }; //girl eating worms
         public static List<string> SerialKillerWins = new List<string> { "CgADBAADZgMAAp0YZAch-MOWBmoFVQI" }; //cat with knife
@@ -40,6 +41,8 @@ namespace Werewolf_Node
         public static List<string> VillagersWin = new List<string> { "CgADBAADPqUAAvsYZAdpARA80fkboQI" }; //snowy village
         public static List<string> NoWinner = new List<string> { "CgADBAADq4EAAiscZAcQuPr65RLBqgI" }; // Loser
         public static List<string> StartGame = new List<string> { "CgADBAADs4IAAqEZZAfQEF0nCx7twAI" }; //"oh boy, here we go"
+        public static List<string> StartFoolishGame = new List<string> { "CgADBAADfJ8AAsgaZAeXaDti_8DimQI" }; //"fool"
+
         public static List<string> StartChaosGame = new List<string> { "CgADAgADSwIAAhA_yUrrYsX5BcqIEwI" }; //rainbow-moon
         public static List<string> TannerWin = new List<string> { "CgADBAADmJ8AAnoZZAcJ08js65-tDwI" }; //weird guy
         public static List<string> CultWins = new List<string> { "CgADAgADSgIAAhA_yUoTBhYc4sCvMwI" }; //girl eating worms
@@ -52,6 +55,7 @@ namespace Werewolf_Node
         public static List<string> VillagersWin = new List<string> { "CgADBAADPqUAAvsYZAdpARA80fkboQI" }; //snowy village
         public static List<string> NoWinner = new List<string> { "CgADBAADq4EAAiscZAcQuPr65RLBqgI" }; // Loser
         public static List<string> StartGame = new List<string> { "CgADBAADs4IAAqEZZAfQEF0nCx7twAI" }; //"oh boy, here we go"
+        public static List<string> StartFoolishGame = new List<string> { "CgADBAADfJ8AAsgaZAeXaDti_8DimQI" }; //"fool"
         public static List<string> StartChaosGame = new List<string> { "CgADAgADSwIAAhA_yUrrYsX5BcqIEwI" }; //rainbow-moon
         public static List<string> TannerWin = new List<string> { "CgADBAADmJ8AAnoZZAcJ08js65-tDwI" }; //weird guy
         public static List<string> CultWins = new List<string> { "CgADAgADSgIAAhA_yUoTBhYc4sCvMwI" }; //girl eating worms
